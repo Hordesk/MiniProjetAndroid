@@ -1,17 +1,16 @@
 package fr.m2dl.miniprojet;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
 public class NewAdapter extends BaseExpandableListAdapter {
@@ -54,15 +53,8 @@ public class NewAdapter extends BaseExpandableListAdapter {
         text = (TextView) convertView;
         text.setText(">"+tempChild.get(childPosition));
         text.setTextColor(Color.WHITE);
-        text.setTextSize(14);
+        text.setTextSize(28);
 
-//		convertView.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				Toast.makeText(activity, tempChild.get(childPosition),
-//						Toast.LENGTH_SHORT).show();
-//			}
-//		});
         convertView.setTag(tempChild.get(childPosition));
         return convertView;
     }
@@ -91,7 +83,13 @@ public class NewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public void onGroupExpanded(int groupPosition) {
-        super.onGroupExpanded(groupPosition);
+        //super.onGroupExpanded(groupPosition);
+        if (groupPosition == 0){
+            super.onGroupExpanded(groupPosition);
+        }
+        else{
+            Log.d("", "lululu");
+        }
     }
 
     @Override
@@ -110,7 +108,8 @@ public class NewAdapter extends BaseExpandableListAdapter {
 
         TextView text = (TextView)convertView;
         text.setTextColor(Color.WHITE);
-        text.setTextSize(14);
+        text.setTextSize(32);
+
         return convertView;
     }
 
@@ -121,7 +120,7 @@ public class NewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 
 }
