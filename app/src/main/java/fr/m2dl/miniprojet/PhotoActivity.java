@@ -30,7 +30,6 @@ public class PhotoActivity extends Activity {
     private Uri imageUri;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Bitmap bitmap;
-    private ToolStatus tool = ToolStatus.NONE;
 
 
 
@@ -47,6 +46,8 @@ public class PhotoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_photo);
+        StaticData.context = this;
+        StaticData.photoActivity = this;
         imageView = (DrawableImageView) findViewById(R.id.imageViewPhoto);
         takePhoto();
 
@@ -74,12 +75,16 @@ public class PhotoActivity extends Activity {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch (tool) {
+                switch (StaticData.tool) {
                     case NONE:
-                        Toast.makeText(getApplicationContext(), "Aucun outil sélectionné", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Aucun outil sélectionné", Toast.LENGTH_SHORT).show();
                         break;
                     case CROSS:
-                        imageView.draw(event.getX(), event.getY());
+                        float x = event.getX();
+                        float y = event.getY();
+                        imageView.draw(x, y);
+                        StaticData.xCrossPos = x;
+                        StaticData.yCrossPos = y;
 
 
                         break;
@@ -92,6 +97,9 @@ public class PhotoActivity extends Activity {
         });
     }
 
+    public DrawableImageView getImageView() {
+        return imageView;
+    }
 
     public void takePhoto() {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
@@ -128,6 +136,11 @@ public class PhotoActivity extends Activity {
                         Log.e("Camera", e.toString());
                     }
 
+                }else{
+                    Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplicationContext().startActivity(intent);
+                    finishActivity(0);
                 }
         }
 
@@ -163,26 +176,20 @@ public class PhotoActivity extends Activity {
                 case 0:
                     switch (childPosition){
                         case 0:
-                            tool = ToolStatus.CROSS;
+                            StaticData.tool = ToolStatus.CROSS;
                             break;
                         case 1:
-                            tool = ToolStatus.SQUARE;
+                            StaticData.tool = ToolStatus.SQUARE;
                             break;
 
                     }
                     break;
 
                 case 1:
-                    tool = ToolStatus.NONE;
+
                     break;
 
-                case 2:
-                    tool = ToolStatus.NONE;
-                    break;
 
-                case 3:
-                    tool = ToolStatus.NONE;
-                    break;
 
             }
             return true;

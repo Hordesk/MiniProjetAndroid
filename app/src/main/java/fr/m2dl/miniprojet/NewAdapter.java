@@ -2,6 +2,7 @@ package fr.m2dl.miniprojet;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,13 +84,29 @@ public class NewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public void onGroupExpanded(int groupPosition) {
-        //super.onGroupExpanded(groupPosition);
-        if (groupPosition == 0){
-            super.onGroupExpanded(groupPosition);
-        }
-        else{
-            Log.d("", "lululu");
-        }
+
+            switch (groupPosition){
+                case 0:
+                    super.onGroupExpanded(groupPosition);
+                    break;
+
+                case 1:
+                    StaticData.tool = ToolStatus.NONE;
+                    StaticData.photoActivity.getImageView().dismissMark();
+                    break;
+
+                case 2:
+                    StaticData.tool = ToolStatus.NONE;
+                    Intent intent = new Intent(StaticData.context, FormActivity.class);
+                    StaticData.context.startActivity(intent);
+                    break;
+
+                case 3:
+                    StaticData.tool = ToolStatus.NONE;
+                    StaticData.photoActivity.takePhoto();
+                    break;
+            }
+
     }
 
     @Override

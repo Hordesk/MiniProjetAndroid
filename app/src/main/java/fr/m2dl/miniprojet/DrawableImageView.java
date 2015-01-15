@@ -14,8 +14,8 @@ public class DrawableImageView extends ImageView {
 
     private Canvas canvas;
     private Paint p;
-    private float x=0;
-    private float y=0;
+    private float x=-10;
+    private float y=-10;
 
     public DrawableImageView(Context context) {
         super(context);
@@ -32,13 +32,21 @@ public class DrawableImageView extends ImageView {
         p.setColor(Color.RED);
         p.setStrokeWidth(10);
 
-        canvas.drawLine(x-30, y-30, x+30, y+30, p);
-        canvas.drawLine(x+30, y-30, x-30, y+30, p);
+        if(x>0 && y>0){
+            canvas.drawLine(x-30, y-30, x+30, y+30, p);
+            canvas.drawLine(x+30, y-30, x-30, y+30, p);
+        }
     }
 
     public void draw(float x, float y) {
         this.x = x;
         this.y = y;
+        invalidate();
+    }
+
+    public void dismissMark(){
+        x=-10;
+        y=-10;
         invalidate();
     }
 }
