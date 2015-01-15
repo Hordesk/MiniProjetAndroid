@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:text="Prendre une photo"
+        android:id="@+id/buttonPhoto"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="#2980b9"
+        android:textSize="35dp"
+        android:textColor="#bdc3c7"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="Gallerie"
+        android:id="@+id/buttonGallery"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="#9b59b6"
+        android:textSize="35dp"
+        android:textColor="#bdc3c7"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="Crédits"
+        android:id="@+id/buttonCredits"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="#e74c3c"
+        android:textSize="35dp"
+        android:textColor="#bdc3c7"/>
+
+</LinearLayout>
