@@ -15,6 +15,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.m2dl.miniprojet.domain.Type;
+
 /**
  * Created by mfaure on 15/01/15.
  */
@@ -42,30 +44,39 @@ public class FormActivity extends Activity {
         spinnerType.setAdapter(dataAdapter);
 
 
-        XMLDomParser parser = new XMLDomParser();
-        AssetManager manager = getAssets();
-        InputStream stream;
         try {
-            stream = manager.open("employee.xml");
-            Document doc = parser.getDocument(stream);
-
-            // Get elements by name employee
-            NodeList nodeList = doc.getElementsByTagName(NODE_EMP);
-
-            /*
-             * for each <employee> element get text of name, salary and
-             * designation
-             */
-            // Here, we have only one <employee> element
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Element e = (Element) nodeList.item(i);
-                nameText.setText(parser.getValue(e, NODE_NAME));
-                salaryText.setText(parser.getValue(e, NODE_SALARY));
-                designationText.setText(parser.getValue(e, NODE_DESIGNATION));
-            }
-        } catch (IOException e1) {
-            e1.printStackTrace();
+            AssetManager manager = getAssets();
+            InputStream stream;
+            stream = manager.open("cleCarac.xml");
+            List<Type> typeList = SAXXMLParser.parse(stream);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+//        XMLDomParser parser = new XMLDomParser();
+//        AssetManager manager = getAssets();
+//        InputStream stream;
+//        try {
+//            stream = manager.open("employee.xml");
+//            Document doc = parser.getDocument(stream);
+//
+//            // Get elements by name employee
+//            NodeList nodeList = doc.getElementsByTagName(NODE_EMP);
+//
+//            /*
+//             * for each <employee> element get text of name, salary and
+//             * designation
+//             */
+//            // Here, we have only one <employee> element
+//            for (int i = 0; i < nodeList.getLength(); i++) {
+//                Element e = (Element) nodeList.item(i);
+//                nameText.setText(parser.getValue(e, NODE_NAME));
+//                salaryText.setText(parser.getValue(e, NODE_SALARY));
+//                designationText.setText(parser.getValue(e, NODE_DESIGNATION));
+//            }
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
 
     }
 }

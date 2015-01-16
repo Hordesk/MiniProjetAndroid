@@ -5,10 +5,15 @@
 	<name>Animal</name>
 	<details>
 		<detail>
-			Invertébré
+			<name>Invertébré</name>
+            <details>
+                <detail>
+                    <name>Some name</name>
+                </detail>
+            </details>
 		</detail>
 		<detail>
-			Vertebré
+			<name>Vertebré</name>
 		</detail>
 	</details>
 </type>
@@ -16,10 +21,15 @@
 	<name>Vegetal</name>
 	<details>
 		<detail>
-			Supérieur à 50cm
+			<name>Supérieur à 50cm</name>
 		</detail>
 		<detail>
-			Inferieur à 50cm
+			<name>Inferieur à 50cm</name>
+            <details>
+                <detail>
+                    <name>Other name</name>
+                </detail>
+            </details>
 		</detail>
 	</details>
 </type>

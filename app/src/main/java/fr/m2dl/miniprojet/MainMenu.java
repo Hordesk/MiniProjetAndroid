@@ -29,7 +29,7 @@ public class MainMenu extends Activity {
         buttonPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, PhotoActivity.class);
+                Intent intent = new Intent(context, FormActivity.class);
                 context.startActivity(intent);
             }
         });
