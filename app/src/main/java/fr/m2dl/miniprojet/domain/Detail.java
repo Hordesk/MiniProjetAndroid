@@ -29,4 +29,8 @@ public class Detail {
         }
         detailList.add(detail);
     }
+    @Override
+    public String toString(){
+        return name;
+    }
 }
