@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,23 +27,47 @@ public class FormActivity extends Activity {
     private Context context;
     private LinearLayout formLayout;
     List<FormCategory> typeList;
+    List<Spinner> spinnerList;
 
     private class SpinnerListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            final List<FormCategory> finalTypeList = typeList;
-            FormCategory formCategory = finalTypeList.get(position);
-            if (formCategory.getFormCategoryList().size() > 0) {
-                Spinner spinner = new Spinner(context);
-                formLayout.addView(spinner);
-
-                List<String> list = new ArrayList<>();
-                for (FormCategory item : formCategory.getFormCategoryList()) {
-                    list.add(item.toString());
+            Spinner selectedSpinner = (Spinner) parent;
+            TextView textView = (TextView) view;
+            if (!textView.getText().equals(FormCategory.DEFAULT_CATEGORY.toString())) {
+                int depth = spinnerList.indexOf(selectedSpinner);
+                if (depth < spinnerList.size() - 1) {
+                    for(int it = depth + 1; it < spinnerList.size(); it++) {
+                        formLayout.removeView(spinnerList.get(it));
+                    }
+                    spinnerList.subList(depth + 1, spinnerList.size()).clear(); // Removing from the next spinner to the end of the list
                 }
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(context,
-                        android.R.layout.simple_spinner_item, list);
-                spinner.setAdapter(dataAdapter);
+
+                FormCategory formCategory = typeList.get(spinnerList.get(0).getSelectedItemPosition() - 1);
+                int tmpDepth = depth;
+                while (tmpDepth > 0) {
+                    formCategory = formCategory.getFormCategoryList().get(
+                            spinnerList.get(depth - tmpDepth + 1).getSelectedItemPosition() - 1
+                    );
+                    tmpDepth--;
+                }
+
+                if (formCategory.getFormCategoryList() != null) {
+                    List<String> list = new ArrayList<>();
+                    list.add(FormCategory.DEFAULT_CATEGORY.toString());
+                    for (FormCategory item : formCategory.getFormCategoryList()) {
+                        list.add(item.toString());
+                    }
+
+                    Spinner newSpinner = new Spinner(context);
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(context,
+                            android.R.layout.simple_spinner_item, list);
+                    newSpinner.setAdapter(dataAdapter);
+                    newSpinner.setOnItemSelectedListener(new SpinnerListener());
+
+                    formLayout.addView(newSpinner);
+                    spinnerList.add(newSpinner);
+                }
             }
         }
 
@@ -57,8 +83,11 @@ public class FormActivity extends Activity {
         setContentView(R.layout.activity_form);
         this.context = this;
 
-        Spinner spinnerType = (Spinner) findViewById(R.id.spinnerType);
         formLayout = (LinearLayout) findViewById(R.id.formLayout);
+
+        spinnerList = new ArrayList<>();
+        Spinner spinnerType = (Spinner) findViewById(R.id.spinnerType);
+        spinnerList.add(spinnerType);
 
         List<String> list = new ArrayList<>();
         typeList = null;
@@ -77,14 +106,13 @@ public class FormActivity extends Activity {
         }
 
         list.add(FormCategory.DEFAULT_CATEGORY.toString());
-        for (FormCategory t : typeList) {
-            list.add(t.toString());
+        for (FormCategory formCategory : typeList) {
+            list.add(formCategory.toString());
         }
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, list);
         spinnerType.setAdapter(dataAdapter);
         spinnerType.setOnItemSelectedListener(new SpinnerListener());
-
     }
 }
