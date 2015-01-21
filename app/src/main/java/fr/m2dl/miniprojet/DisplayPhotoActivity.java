@@ -9,7 +9,9 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Created by mfaure on 21/01/15.
@@ -48,6 +50,12 @@ ImageView imageView;
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
         Bitmap bitmap = BitmapFactory.decodeFile(photoPath, options);
 
-        imageView.setImageBitmap(bitmap);
+        try{
+
+            imageView.setImageBitmap(bitmap);
+
+        }catch (Exception e){
+            Toast.makeText(this, "Pas de photo existante", Toast.LENGTH_SHORT).show();
+        }
     }
 }

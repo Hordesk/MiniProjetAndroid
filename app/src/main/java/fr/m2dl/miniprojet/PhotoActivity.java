@@ -62,9 +62,14 @@ public class PhotoActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getApplicationContext().startActivity(intent);
+                if (StaticData.tool == ToolStatus.NONE){
+                    Toast.makeText(getApplicationContext(), "Mettez une marque SVP", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplicationContext().startActivity(intent);
+                }
             }
         });
 
@@ -236,9 +241,21 @@ public class PhotoActivity extends Activity {
                     switch (childPosition){
                         case 0:
                             StaticData.tool = ToolStatus.CROSS;
+                            StaticData.xCrossPos = -10;
+                            StaticData.yCrossPos = -10;
+                            StaticData.xBottomRightSquare = -10;
+                            StaticData.xTopLeftSquare = -10;
+                            StaticData.yBottomRightSquare = -10;
+                            StaticData.yTopLeftSquare = -10;
                             break;
                         case 1:
                             StaticData.tool = ToolStatus.SQUARE;
+                            StaticData.xCrossPos = -10;
+                            StaticData.yCrossPos = -10;
+                            StaticData.xBottomRightSquare = -10;
+                            StaticData.xTopLeftSquare = -10;
+                            StaticData.yBottomRightSquare = -10;
+                            StaticData.yTopLeftSquare = -10;
                             break;
 
                     }

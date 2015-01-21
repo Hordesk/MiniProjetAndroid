@@ -29,5 +29,5 @@ public class StaticData {
     public static String userName;
 
     public static String commentaire = "";
-    public static ArrayList<String> infos = new ArrayList<String>();
+    public static String info;
 }

@@ -28,8 +28,13 @@ public class SendingActivity extends Activity {
                 String[] toArr = {"biologistem2dl@gmail.com"};
                 m.setTo(toArr);
                 m.setFrom("biologistem2dl@gmail.com");
-                m.setSubject("Username: "+ StaticData.userName+"\n");
-                m.setBody("Username: "+ StaticData.userName+"\n");
+                m.setSubject("Nouvelle photo de: "+ StaticData.userName+"\n");
+                if(StaticData.xCrossPos == -10){
+                    m.setBody("Nom d'utilisateur: "+ StaticData.userName+"\nZone signalée: x1 = " + StaticData.xTopLeftSquare + " -- x2 = "+StaticData.xBottomRightSquare+" -- y1 = " + StaticData.yTopLeftSquare + " -- y2 = " + StaticData.yBottomRightSquare+"\nType : " +StaticData.info +"\nCoordonnées GPS : longitude = "+ StaticData.lon + " -- latitude = " +StaticData.lat+ "\nCommentaire : \n" + StaticData.commentaire);
+                }else{
+
+                    m.setBody("Nom d'utilisateur: "+ StaticData.userName+"\nPoint signalé: x = " + StaticData.xCrossPos + " -- y = "+StaticData.yCrossPos+"\nType : "+StaticData.info +"\nCoordonnées GPS : longitude = "+ StaticData.lon + " -- latitude = " +StaticData.lat+ "\nCommentaire : \n" + StaticData.commentaire);
+                }
 
                 try {
 

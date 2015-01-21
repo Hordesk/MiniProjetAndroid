@@ -93,7 +93,12 @@ public class NewAdapter extends BaseExpandableListAdapter {
                 case 1:
                     StaticData.tool = ToolStatus.NONE;
                     StaticData.photoActivity.getImageView().dismissMark();
+
+                    StaticData.xCrossPos = -10;
+                    StaticData.yCrossPos = -10;
+                    StaticData.xBottomRightSquare = -10;
                     StaticData.xTopLeftSquare = -10;
+                    StaticData.yBottomRightSquare = -10;
                     StaticData.yTopLeftSquare = -10;
                     break;
 
@@ -101,6 +106,13 @@ public class NewAdapter extends BaseExpandableListAdapter {
                     StaticData.tool = ToolStatus.NONE;
                     Intent intent = new Intent(StaticData.context, FormActivity.class);
                     StaticData.context.startActivity(intent);
+
+                    StaticData.xCrossPos = -10;
+                    StaticData.yCrossPos = -10;
+                    StaticData.xBottomRightSquare = -10;
+                    StaticData.xTopLeftSquare = -10;
+                    StaticData.yBottomRightSquare = -10;
+                    StaticData.yTopLeftSquare = -10;
                     break;
 
                 case 3:
