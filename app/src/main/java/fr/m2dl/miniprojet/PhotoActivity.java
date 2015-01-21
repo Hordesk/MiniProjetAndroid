@@ -31,10 +31,7 @@ public class PhotoActivity extends Activity {
     private Uri imageUri;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Bitmap bitmap;
-
-    private float xBottomRightSquare;
-    private float yBottomRightSquare;
-
+    
     private Button boutonValider;
     private Button boutonRetour;
 
@@ -55,9 +52,6 @@ public class PhotoActivity extends Activity {
         StaticData.context = this;
         StaticData.photoActivity = this;
         imageView = (DrawableImageView) findViewById(R.id.imageViewPhoto);
-
-        xBottomRightSquare = -10;
-        yBottomRightSquare = -10;
 
         boutonValider = (Button) findViewById(R.id.buttonValider);
         boutonRetour = (Button) findViewById(R.id.buttonRetour);
@@ -124,6 +118,8 @@ public class PhotoActivity extends Activity {
                             float x = event.getX();
                             float y = event.getY();
                             imageView.drawPoint(x, y);
+                            StaticData.xCrossPos = x;
+                            StaticData.yCrossPos = y;
                         }
 
                         break;
@@ -132,12 +128,12 @@ public class PhotoActivity extends Activity {
                             StaticData.xTopLeftSquare = event.getX();
                             StaticData.yTopLeftSquare = event.getY();
                         } else {
-                            xBottomRightSquare = event.getX();
-                            yBottomRightSquare = event.getY();
+                            StaticData.xBottomRightSquare = event.getX();
+                            StaticData.yBottomRightSquare = event.getY();
 
                             imageView.drawRect(
                                     StaticData.xTopLeftSquare, StaticData.yTopLeftSquare,
-                                    xBottomRightSquare, yBottomRightSquare
+                                    StaticData.xBottomRightSquare, StaticData.yBottomRightSquare
                             );
                         }
                         break;

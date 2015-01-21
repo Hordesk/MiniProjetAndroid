@@ -7,8 +7,14 @@ import android.content.Context;
  * Created by mfaure on 15/01/15.
  */
 public class StaticData {
+    public static float xCrossPos = 0;
+    public static float yCrossPos = 0;
+
     public static float xTopLeftSquare = -10;
     public static float yTopLeftSquare = -10;
+    public static float xBottomRightSquare = -10;
+    public static float yBottomRightSquare = -10;
+
     public static Context context;
     public  static ToolStatus tool = ToolStatus.NONE;
     public static PhotoActivity photoActivity;
