@@ -11,11 +11,8 @@ import android.os.Bundle;
 
 public class GpsProvider {
 
-    private ArrayList<Double> tab = new ArrayList<Double>();
-    private Boolean bool = false;
     private double longitude;
     private double latitude;
-    private double vitesse;
     protected  LocationManager lm;
     protected  LocationListener ll;
 
@@ -35,13 +32,7 @@ public class GpsProvider {
         this.latitude = latitude;
     }
 
-    public double getVitesse() {
-        return vitesse;
-    }
 
-    public void setVitesse(double altitude) {
-        this.vitesse = altitude;
-    }
 
     public GpsProvider(Context context) {
 
@@ -67,28 +58,9 @@ public class GpsProvider {
 
             @Override
             public void onLocationChanged(Location location) {
-                setVitesse(location.getSpeed()*3.6);
                 setLatitude(location.getLatitude());
                 setLongitude(location.getLongitude());
 
-
-
-                if (bool == false) {
-                    tab.add(location.getAltitude());
-                }
-                if (bool == true) {
-                    if (location.getAltitude() != tab.get(tab.size() - 1)) {
-                        if (Double.compare(location.getAltitude(), 0.0d) != 0) {
-                            if (Double.compare(location.getAltitude(), tab.size() - 1) > 2 || Double.compare(location.getAltitude(), tab.size() - 1) < -2) {
-                                tab.add(location.getAltitude());
-                            }
-                        }
-                    }
-                }
-
-                bool = true;
-
-                System.out.println(tab.toString());
 
             }
         };

@@ -24,4 +24,6 @@ public class StaticData {
     public static double lon = 0;
     public static double lat = 0;
 
+    public static String userName;
+
 }

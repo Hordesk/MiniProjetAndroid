@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:background="#000000">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:padding="25dp"
+        android:background="#AAAAAA"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/formLayout"
+            android:layout_weight="1"
+            android:background="#AAAAAA">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="64dp"
+                android:text="Mail en cours d'envoi"
+                android:gravity="center"
+                android:id="@+id/textView"
+                android:background="#FFFFFF" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|top"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/buttonValider"
+                android:background="@drawable/smiley"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

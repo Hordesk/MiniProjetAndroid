@@ -1,10 +1,18 @@
 package fr.m2dl.miniprojet;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * Created by mfaure on 15/01/15.
@@ -29,9 +37,13 @@ public class CommentActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+
+                Intent intent = new Intent(getApplicationContext(), SendingActivity.class);
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getApplicationContext().startActivity(intent);
+
+
             }
         });
 
