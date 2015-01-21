@@ -2,11 +2,14 @@ package fr.m2dl.miniprojet;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -33,9 +36,10 @@ public class PhotoActivity extends Activity {
     private Bitmap bitmap;
 
 
-    Button boutonValider;
-    Button boutonRetour;
+    private Button boutonValider;
+    private Button boutonRetour;
 
+    private GpsProvider gpsProvider;
     //Drawer
     private String[] mPlanetTitles = new String[3];
 
@@ -55,6 +59,8 @@ public class PhotoActivity extends Activity {
 
         boutonValider = (Button) findViewById(R.id.buttonValider);
         boutonRetour = (Button) findViewById(R.id.buttonRetour);
+
+        gpsProvider = new GpsProvider(this);
 
         boutonValider.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,7 +185,20 @@ public class PhotoActivity extends Activity {
                 }
         }
 
-    }
+
+        if (gpsProvider.isEnabled()) {
+                StaticData.lat =  gpsProvider.getLatitude() ;
+                StaticData.lon =  gpsProvider.getLongitude();
+                Log.d("gps",StaticData.lon+"--"+StaticData.lat);
+        } else {
+            Toast.makeText(getApplicationContext(), "Le gps n'est pas allumé.", Toast.LENGTH_SHORT ).show();
+            takePhoto();
+        }
+        gpsProvider.destroy();
+
+
+
+}
 
     public void setGroupData() {
         groupItem.add("Outils");

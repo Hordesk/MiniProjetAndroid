@@ -14,4 +14,8 @@ public class StaticData {
     public static PhotoActivity photoActivity;
     public static boolean markerOn = false;
 
+
+    public static double lon = 0;
+    public static double lat = 0;
+
 }
