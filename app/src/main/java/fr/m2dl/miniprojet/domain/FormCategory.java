@@ -8,8 +8,15 @@ import java.util.List;
  */
 public class FormCategory {
 
+    public static final FormCategory DEFAULT_CATEGORY = new FormCategory("Choose an entry");
     private String name;
     private List<FormCategory> formCategoryList;
+
+    public FormCategory(String name) {
+        this.name = name;
+    }
+
+    public FormCategory() {}
 
     public String getName() {
         return name;

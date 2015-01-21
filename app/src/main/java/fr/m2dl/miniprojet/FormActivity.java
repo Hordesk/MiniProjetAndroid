@@ -23,12 +23,33 @@ import fr.m2dl.miniprojet.domain.FormCategory;
 public class FormActivity extends Activity {
 
     private Context context;
-    private Spinner spinnerType;
-    private List<FormCategory> typeList = null;
-    private List<FormCategory> formCategoryList = null;
-    private Spinner spinnerDetails;
     private LinearLayout formLayout;
-    private String NODE_EMP = "";
+    List<FormCategory> typeList;
+
+    private class SpinnerListener implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            final List<FormCategory> finalTypeList = typeList;
+            FormCategory formCategory = finalTypeList.get(position);
+            if (formCategory.getFormCategoryList().size() > 0) {
+                Spinner spinner = new Spinner(context);
+                formLayout.addView(spinner);
+
+                List<String> list = new ArrayList<>();
+                for (FormCategory item : formCategory.getFormCategoryList()) {
+                    list.add(item.toString());
+                }
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(context,
+                        android.R.layout.simple_spinner_item, list);
+                spinner.setAdapter(dataAdapter);
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,58 +57,34 @@ public class FormActivity extends Activity {
         setContentView(R.layout.activity_form);
         this.context = this;
 
-        spinnerType = (Spinner) findViewById(R.id.spinnerType);
+        Spinner spinnerType = (Spinner) findViewById(R.id.spinnerType);
         formLayout = (LinearLayout) findViewById(R.id.formLayout);
 
-        List<String> list = new ArrayList<String>();
-
+        List<String> list = new ArrayList<>();
+        typeList = null;
 
         try {
             AssetManager manager = getAssets();
             InputStream stream;
-            stream = manager.open("cleCarac.xml");
+            stream = manager.open("formCategories.xml");
             typeList = SAXXMLParser.parse(stream);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-        for(FormCategory t : typeList){
-            list.add(t.toString());
-
-
+        if (typeList == null) {
+            //TODO Toast 'no xml found' and return main menu.
         }
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+
+        list.add(FormCategory.DEFAULT_CATEGORY.toString());
+        for (FormCategory t : typeList) {
+            list.add(t.toString());
+        }
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, list);
         spinnerType.setAdapter(dataAdapter);
-
-
-
-        spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                FormCategory t = typeList.get(position);
-                Spinner s = null;
-                if(t.getFormCategoryList().size()>0){
-                    s = new Spinner(context);
-                    formLayout.addView(s);
-                }
-
-                formCategoryList = t.getFormCategoryList();
-                List<String> list = new ArrayList<String>();
-                for (FormCategory d : formCategoryList){
-                    list.add(d.toString());
-                }
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,
-                        android.R.layout.simple_spinner_item, list);
-                s.setAdapter(dataAdapter);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        spinnerType.setOnItemSelectedListener(new SpinnerListener());
 
     }
 }
