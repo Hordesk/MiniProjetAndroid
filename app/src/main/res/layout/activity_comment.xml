@@ -21,11 +21,21 @@
             android:id="@+id/formLayout"
             android:layout_weight="1">
 
-            <Spinner
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerType"
-                />
+                android:textSize="24dp"
+                android:text="Voulez vous ajouter un commentaire?"
+                android:gravity="center"
+                android:id="@+id/textView" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/editText"
+                android:background="#EEEEEE"
+                android:layout_marginTop="15dp" />
         </LinearLayout>
 
         <LinearLayout

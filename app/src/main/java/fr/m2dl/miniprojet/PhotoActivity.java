@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ public class PhotoActivity extends Activity {
     private Bitmap bitmap;
 
 
+    Button boutonValider;
+    Button boutonRetour;
 
     //Drawer
     private String[] mPlanetTitles = new String[3];
@@ -49,11 +52,41 @@ public class PhotoActivity extends Activity {
         StaticData.context = this;
         StaticData.photoActivity = this;
         imageView = (DrawableImageView) findViewById(R.id.imageViewPhoto);
+
+        boutonValider = (Button) findViewById(R.id.buttonValider);
+        boutonRetour = (Button) findViewById(R.id.buttonRetour);
+
+        boutonValider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(intent);
+            }
+        });
+
+        boutonRetour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(intent);
+
+            }
+        });
+
         takePhoto();
 
         mPlanetTitles[0] = "Outils";
         mPlanetTitles[1] = "Annuler";
         mPlanetTitles[2] = "Valider"; //TODO use resource array //getResources().getStringArray(R.array.planets_array);
+
+
+
 
 
         setGroupData();

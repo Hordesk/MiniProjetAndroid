@@ -2,12 +2,15 @@ package fr.m2dl.miniprojet;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,6 +31,8 @@ public class FormActivity extends Activity {
     private LinearLayout formLayout;
     List<FormCategory> typeList;
     List<Spinner> spinnerList;
+    Button boutonValider;
+    Button boutonRetour;
 
     private class SpinnerListener implements AdapterView.OnItemSelectedListener {
         @Override
@@ -61,10 +66,10 @@ public class FormActivity extends Activity {
 
                     Spinner newSpinner = new Spinner(context);
                     ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(context,
-                            android.R.layout.simple_spinner_item, list);
+                            android.R.layout.simple_spinner_dropdown_item, list);
                     newSpinner.setAdapter(dataAdapter);
                     newSpinner.setOnItemSelectedListener(new SpinnerListener());
-
+                    newSpinner.setDrawingCacheBackgroundColor(Color.WHITE);
                     formLayout.addView(newSpinner);
                     spinnerList.add(newSpinner);
                 }
@@ -84,6 +89,26 @@ public class FormActivity extends Activity {
         this.context = this;
 
         formLayout = (LinearLayout) findViewById(R.id.formLayout);
+        boutonValider = (Button) findViewById(R.id.buttonValider);
+        boutonRetour = (Button) findViewById(R.id.buttonRetour);
+
+        boutonValider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, CommentActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        boutonRetour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, PhotoActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
         spinnerList = new ArrayList<>();
         Spinner spinnerType = (Spinner) findViewById(R.id.spinnerType);
@@ -111,7 +136,7 @@ public class FormActivity extends Activity {
         }
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, list);
+                android.R.layout.simple_spinner_dropdown_item, list);
         spinnerType.setAdapter(dataAdapter);
         spinnerType.setOnItemSelectedListener(new SpinnerListener());
     }
