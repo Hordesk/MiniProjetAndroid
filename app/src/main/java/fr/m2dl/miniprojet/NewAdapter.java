@@ -93,6 +93,8 @@ public class NewAdapter extends BaseExpandableListAdapter {
                 case 1:
                     StaticData.tool = ToolStatus.NONE;
                     StaticData.photoActivity.getImageView().dismissMark();
+                    StaticData.xTopLeftSquare = -10;
+                    StaticData.yTopLeftSquare = -10;
                     break;
 
                 case 2:

@@ -12,10 +12,11 @@ import android.widget.ImageView;
  */
 public class DrawableImageView extends ImageView {
 
-    private Canvas canvas;
-    private Paint p;
-    private float x=-10;
-    private float y=-10;
+    Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private float xTopLeft = -10;
+    private float yTopLeft = -10;
+    private float xBottomRight = -10;
+    private float yBottomRight = -10;
 
     public DrawableImageView(Context context) {
         super(context);
@@ -28,25 +29,45 @@ public class DrawableImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
         p.setColor(Color.RED);
+        p.setStyle(Paint.Style.STROKE);
         p.setStrokeWidth(10);
 
-        if(x>0 && y>0){
-            canvas.drawLine(x-30, y-30, x+30, y+30, p);
-            canvas.drawLine(x+30, y-30, x-30, y+30, p);
+        if(xTopLeft >0 && yTopLeft >0){
+            switch (StaticData.tool) {
+                case CROSS:
+                    canvas.drawLine(xTopLeft - 30, yTopLeft - 30, xTopLeft + 30, yTopLeft + 30, p);
+                    canvas.drawLine(xTopLeft + 30, yTopLeft - 30, xTopLeft - 30, yTopLeft + 30, p);
+                    break;
+                case SQUARE:
+                    canvas.drawRect(xTopLeft, yTopLeft, xBottomRight, yBottomRight, p);
+                    break;
+                default:
+                    // NONE
+                    break;
+            }
         }
     }
 
-    public void draw(float x, float y) {
-        this.x = x;
-        this.y = y;
+    public void drawPoint(float x, float y) {
+        StaticData.tool = ToolStatus.CROSS;
+        this.xTopLeft = x;
+        this.yTopLeft = y;
+        invalidate();
+    }
+
+    public void drawRect(float xTopLeft, float yTopLeft, float xBottomRight, float yBottomRight) {
+        StaticData.tool = ToolStatus.SQUARE;
+        this.xTopLeft = xTopLeft;
+        this.yTopLeft = yTopLeft;
+        this.xBottomRight = xBottomRight;
+        this.yBottomRight = yBottomRight;
         invalidate();
     }
 
     public void dismissMark(){
-        x=-10;
-        y=-10;
+        xTopLeft =-10;
+        yTopLeft =-10;
         invalidate();
     }
 }

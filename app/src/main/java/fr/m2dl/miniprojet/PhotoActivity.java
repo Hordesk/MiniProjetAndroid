@@ -5,8 +5,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -20,7 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -35,6 +32,8 @@ public class PhotoActivity extends Activity {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Bitmap bitmap;
 
+    private float xBottomRightSquare;
+    private float yBottomRightSquare;
 
     private Button boutonValider;
     private Button boutonRetour;
@@ -57,6 +56,9 @@ public class PhotoActivity extends Activity {
         StaticData.photoActivity = this;
         imageView = (DrawableImageView) findViewById(R.id.imageViewPhoto);
 
+        xBottomRightSquare = -10;
+        yBottomRightSquare = -10;
+
         boutonValider = (Button) findViewById(R.id.buttonValider);
         boutonRetour = (Button) findViewById(R.id.buttonRetour);
 
@@ -75,7 +77,6 @@ public class PhotoActivity extends Activity {
         boutonRetour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
 
@@ -122,14 +123,23 @@ public class PhotoActivity extends Activity {
                         if(!StaticData.markerOn){
                             float x = event.getX();
                             float y = event.getY();
-                            imageView.draw(x, y);
-                            StaticData.xCrossPos = x;
-                            StaticData.yCrossPos = y;
+                            imageView.drawPoint(x, y);
                         }
-
 
                         break;
                     case SQUARE:
+                        if (StaticData.xTopLeftSquare < 0 || StaticData.yTopLeftSquare < 0) {
+                            StaticData.xTopLeftSquare = event.getX();
+                            StaticData.yTopLeftSquare = event.getY();
+                        } else {
+                            xBottomRightSquare = event.getX();
+                            yBottomRightSquare = event.getY();
+
+                            imageView.drawRect(
+                                    StaticData.xTopLeftSquare, StaticData.yTopLeftSquare,
+                                    xBottomRightSquare, yBottomRightSquare
+                            );
+                        }
                         break;
                 }
 
@@ -208,7 +218,7 @@ public class PhotoActivity extends Activity {
     }
 
     public void setChildGroupData() {
-        ArrayList<String> child = new ArrayList<String>();
+        ArrayList<String> child = new ArrayList<>();
         child.add("Point");
         child.add("Zone");
         childItem.add(child);
