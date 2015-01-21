@@ -3,31 +3,29 @@ package fr.m2dl.miniprojet;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import fr.m2dl.miniprojet.domain.Detail;
-import fr.m2dl.miniprojet.domain.Type;
+import fr.m2dl.miniprojet.domain.FormCategory;
 
 public class SAXXMLHandler extends DefaultHandler {
 
-    private ArrayList<Type> typeList;
+    private ArrayList<FormCategory> categoryList;
     private String tmpVal;
-    private Detail lastDetail;
-    private Type tmpType;
-    private ArrayList<Detail> currentDetailPath;
+    private FormCategory lastFormCategory;
+    private FormCategory rootCategory;
+    private ArrayList<FormCategory> currentFormCategoryPath;
     private boolean inDetails = false;
 
     public SAXXMLHandler() {
-        typeList = new ArrayList<>();
-        currentDetailPath = new ArrayList<>();
+        categoryList = new ArrayList<>();
+        currentFormCategoryPath = new ArrayList<>();
     }
 
-    public ArrayList<Type> getTypeList() {
-        return typeList;
+    public ArrayList<FormCategory> getCategoryList() {
+        return categoryList;
     }
 
     public void startElement(String uri,
@@ -36,14 +34,14 @@ public class SAXXMLHandler extends DefaultHandler {
                              Attributes attributes) throws SAXException {
 
         if (qName.equalsIgnoreCase("type")) {
-            tmpType = new Type();
+            rootCategory = new FormCategory();
         } else if (qName.equalsIgnoreCase("detail")) {
-            lastDetail = new Detail();
-            currentDetailPath.add(lastDetail);
-            if (currentDetailPath.size() > 1) {
-                currentDetailPath.get(currentDetailPath.size()-2).addDetail(lastDetail);
+            lastFormCategory = new FormCategory();
+            currentFormCategoryPath.add(lastFormCategory);
+            if (currentFormCategoryPath.size() > 1) {
+                currentFormCategoryPath.get(currentFormCategoryPath.size()-2).addDetail(lastFormCategory);
             } else {
-                tmpType.addDetail(lastDetail);
+                rootCategory.addDetail(lastFormCategory);
             }
         } else if (qName.equalsIgnoreCase("details")) {
             inDetails = true;
@@ -57,28 +55,28 @@ public class SAXXMLHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (qName.equalsIgnoreCase("type")) {
             inDetails = false;
-            typeList.add(tmpType);
-            Log.d("", "Type name : " + tmpType.getName());
-            for(Detail detail: tmpType.getDetailList()) {
-                logGraph("", detail);
+            categoryList.add(rootCategory);
+            Log.d("", "Type name : " + rootCategory.getName());
+            for(FormCategory formCategory : rootCategory.getFormCategoryList()) {
+                logGraph("", formCategory);
             }
 
         } else if (qName.equalsIgnoreCase("detail")) {
-            currentDetailPath.remove(currentDetailPath.size()-1);
+            currentFormCategoryPath.remove(currentFormCategoryPath.size()-1);
         } else if (qName.equalsIgnoreCase("name")) {
             if (inDetails) {
-                lastDetail.setName(tmpVal);
+                lastFormCategory.setName(tmpVal);
             } else {
-                tmpType.setName(tmpVal);
+                rootCategory.setName(tmpVal);
             }
         }
     }
 
-    public void logGraph(String prefix, Detail root) {
+    public void logGraph(String prefix, FormCategory root) {
         Log.d("", prefix + ">> " + root.getName());
-        if (root.getDetailList() != null) {
-            for(Detail detail: root.getDetailList()) {
-                logGraph(">> ", detail);
+        if (root.getFormCategoryList() != null) {
+            for(FormCategory formCategory : root.getFormCategoryList()) {
+                logGraph(">> ", formCategory);
             }
         }
     }

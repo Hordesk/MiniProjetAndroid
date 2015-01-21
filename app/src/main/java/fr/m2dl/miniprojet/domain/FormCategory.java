@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * Created by mfaure on 15/01/15.
  */
-public class Detail {
+public class FormCategory {
 
     private String name;
-    private List<Detail> detailList;
+    private List<FormCategory> formCategoryList;
 
     public String getName() {
         return name;
@@ -19,15 +19,15 @@ public class Detail {
         this.name = name;
     }
 
-    public List<Detail> getDetailList() {
-        return detailList;
+    public List<FormCategory> getFormCategoryList() {
+        return formCategoryList;
     }
 
-    public void addDetail(Detail detail) {
-        if (detailList == null) {
-            detailList = new ArrayList<>();
+    public void addDetail(FormCategory formCategory) {
+        if (formCategoryList == null) {
+            formCategoryList = new ArrayList<>();
         }
-        detailList.add(detail);
+        formCategoryList.add(formCategory);
     }
     @Override
     public String toString(){

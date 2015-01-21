@@ -10,17 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.m2dl.miniprojet.domain.Detail;
-import fr.m2dl.miniprojet.domain.Type;
+import fr.m2dl.miniprojet.domain.FormCategory;
 
 /**
  * Created by mfaure on 15/01/15.
@@ -29,8 +24,8 @@ public class FormActivity extends Activity {
 
     private Context context;
     private Spinner spinnerType;
-    private List<Type> typeList = null;
-    private List<Detail> detailList = null;
+    private List<FormCategory> typeList = null;
+    private List<FormCategory> formCategoryList = null;
     private Spinner spinnerDetails;
     private LinearLayout formLayout;
     private String NODE_EMP = "";
@@ -57,7 +52,7 @@ public class FormActivity extends Activity {
         }
 
 
-        for(Type t : typeList){
+        for(FormCategory t : typeList){
             list.add(t.toString());
 
 
@@ -71,16 +66,16 @@ public class FormActivity extends Activity {
         spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Type t = typeList.get(position);
+                FormCategory t = typeList.get(position);
                 Spinner s = null;
-                if(t.getDetailList().size()>0){
+                if(t.getFormCategoryList().size()>0){
                     s = new Spinner(context);
                     formLayout.addView(s);
                 }
 
-                detailList = t.getDetailList();
+                formCategoryList = t.getFormCategoryList();
                 List<String> list = new ArrayList<String>();
-                for (Detail d : detailList){
+                for (FormCategory d : formCategoryList){
                     list.add(d.toString());
                 }
                 ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,

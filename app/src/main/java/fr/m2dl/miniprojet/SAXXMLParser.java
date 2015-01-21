@@ -7,11 +7,11 @@ import java.io.InputStream;
         import org.xml.sax.XMLReader;
         import android.util.Log;
 
-import fr.m2dl.miniprojet.domain.Type;
+import fr.m2dl.miniprojet.domain.FormCategory;
 
 public class SAXXMLParser {
-    public static List<Type> parse(InputStream is) {
-        List<Type> employees = null;
+    public static List<FormCategory> parse(InputStream is) {
+        List<FormCategory> employees = null;
         try {
             // create a XMLReader from SAXParser
             XMLReader xmlReader = SAXParserFactory.newInstance().newSAXParser()
@@ -23,7 +23,7 @@ public class SAXXMLParser {
             // the process starts
             xmlReader.parse(new InputSource(is));
             // get the `Employee list`
-            employees = saxHandler.getTypeList();
+            employees = saxHandler.getCategoryList();
 
         } catch (Exception ex) {
             Log.e("XML", "SAXXMLParser: parse() failed", ex);
