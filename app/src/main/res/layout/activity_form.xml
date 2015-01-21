@@ -4,22 +4,25 @@
     android:layout_height="match_parent"
     android:gravity="bottom">
 
-    <Spinner
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerType"
-        />
+        android:layout_height="match_parent"
+        android:id="@+id/formLayout"
+        android:layout_weight="1">
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerDetail"
-        android:layout_gravity="center_horizontal" />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerType"
+            />
+    </LinearLayout>
+
 
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_weight="10"></FrameLayout>
 
     <LinearLayout
         android:orientation="horizontal"
