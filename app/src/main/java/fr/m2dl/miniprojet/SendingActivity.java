@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,16 +21,15 @@ public class SendingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sending);
-
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                Mail m = new Mail("biologisteM2DL@yahoo.com", "labiologie");
-                String[] toArr = {"biologisteM2DL@yahoo.com"};
+                Mail m = new Mail("biologistem2dl@gmail.com", "labiologie");
+                String[] toArr = {"biologistem2dl@gmail.com"};
                 m.setTo(toArr);
-                m.setFrom("biologisteM2DL@yahoo.com");
-                m.setSubject("This is an email sent using my Mail JavaMail wrapper from an Android device.");
-                m.setBody("Email body");
+                m.setFrom("biologistem2dl@gmail.com");
+                m.setSubject("Username: "+ StaticData.userName+"\n");
+                m.setBody("Username: "+ StaticData.userName+"\n");
 
                 try {
 

@@ -12,6 +12,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -21,7 +22,7 @@ public class CommentActivity extends Activity {
 
     Button boutonValider;
     Button boutonRetour;
-
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class CommentActivity extends Activity {
         setContentView(R.layout.activity_comment);
         boutonValider = (Button) findViewById(R.id.buttonValider);
         boutonRetour = (Button) findViewById(R.id.buttonRetour);
+        editText = (EditText) findViewById(R.id.editText);
 
 
 
@@ -37,6 +39,9 @@ public class CommentActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+
+
+                    StaticData.commentaire = editText.getText().toString();
 
                 Intent intent = new Intent(getApplicationContext(), SendingActivity.class);
 
