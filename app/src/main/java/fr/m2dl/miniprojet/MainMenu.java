@@ -29,18 +29,18 @@ public class MainMenu extends Activity {
         buttonPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, FormActivity.class);
+                Intent intent = new Intent(context, PhotoActivity.class);
                 context.startActivity(intent);
             }
         });
 
-//        buttonGallery.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context,HelloAndroid2.class);
-//                context.startActivity(intent);
-//            }
-//        });
+        buttonGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,DisplayPhotoActivity.class);
+                context.startActivity(intent);
+            }
+        });
 //
 //        buttonCredits.setOnClickListener(new View.OnClickListener() {
 //            @Override

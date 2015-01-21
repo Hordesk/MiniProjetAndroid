@@ -12,5 +12,6 @@ public class StaticData {
     public static Context context;
     public  static ToolStatus tool = ToolStatus.NONE;
     public static PhotoActivity photoActivity;
+    public static boolean markerOn = false;
 
 }

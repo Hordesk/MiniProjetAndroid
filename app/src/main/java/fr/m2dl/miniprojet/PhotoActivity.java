@@ -113,11 +113,13 @@ public class PhotoActivity extends Activity {
                         Toast.makeText(getApplicationContext(), "Aucun outil sélectionné", Toast.LENGTH_SHORT).show();
                         break;
                     case CROSS:
-                        float x = event.getX();
-                        float y = event.getY();
-                        imageView.draw(x, y);
-                        StaticData.xCrossPos = x;
-                        StaticData.yCrossPos = y;
+                        if(!StaticData.markerOn){
+                            float x = event.getX();
+                            float y = event.getY();
+                            imageView.draw(x, y);
+                            StaticData.xCrossPos = x;
+                            StaticData.yCrossPos = y;
+                        }
 
 
                         break;
@@ -204,7 +206,6 @@ public class PhotoActivity extends Activity {
         @Override
         public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
-            Log.d("","dfghjklm");
             switch (groupPosition){
                 case 0:
                     switch (childPosition){
