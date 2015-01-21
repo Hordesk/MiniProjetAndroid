@@ -96,6 +96,12 @@ public class FormActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                String selectedText;
+                if (spinnerList.size() > 1) {
+                    selectedText = (String) spinnerList.get(spinnerList.size() - 2).getSelectedItem();
+                    Log.d("", "{{{{{ Selected test : " + selectedText);
+                }
+
                 Intent intent = new Intent(context, CommentActivity.class);
                 context.startActivity(intent);
             }
