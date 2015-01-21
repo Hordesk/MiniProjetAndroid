@@ -9,11 +9,26 @@
             <details>
                 <detail>
                     <name>Some name</name>
+                    <details>
+                        <detail>
+                            <name>The cake is a lie !</name>
+                        </detail>
+                    </details>
                 </detail>
             </details>
 		</detail>
 		<detail>
 			<name>Vertebré</name>
+            <details>
+                <detail>
+                    <name>Some details</name>
+                    <details>
+                        <detail>
+                            <name>Nothing after that</name>
+                        </detail>
+                    </details>
+                </detail>
+            </details>
 		</detail>
 	</details>
 </type>
@@ -22,6 +37,11 @@
 	<details>
 		<detail>
 			<name>Supérieur à 50cm</name>
+            <details>
+                <detail>
+                    <name>You want some ?</name>
+                </detail>
+            </details>
 		</detail>
 		<detail>
 			<name>Inferieur à 50cm</name>
