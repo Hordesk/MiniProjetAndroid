@@ -1,4 +1,4 @@
-package fr.m2dl.miniprojet;
+package fr.m2dl.miniprojet.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
+
+import fr.m2dl.miniprojet.utils.Mail;
+import fr.m2dl.miniprojet.R;
+import fr.m2dl.miniprojet.utils.StaticData;
 
 /**
  * Created by mfaure on 21/01/15.

@@ -1,4 +1,4 @@
-package fr.m2dl.miniprojet; /**
+package fr.m2dl.miniprojet.utils; /**
  * Created by mfaure on 21/01/15.
  */
 

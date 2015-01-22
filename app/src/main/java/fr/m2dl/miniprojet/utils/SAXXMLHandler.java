@@ -1,4 +1,4 @@
-package fr.m2dl.miniprojet;
+package fr.m2dl.miniprojet.utils;
 
 import android.util.Log;
 

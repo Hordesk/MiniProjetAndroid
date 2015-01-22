@@ -1,4 +1,4 @@
-package fr.m2dl.miniprojet;
+package fr.m2dl.miniprojet.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import fr.m2dl.miniprojet.R;
+import fr.m2dl.miniprojet.utils.StaticData;
 
 /**
  * Created by mfaure on 15/01/15.

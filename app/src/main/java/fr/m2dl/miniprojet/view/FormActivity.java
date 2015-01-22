@@ -1,4 +1,4 @@
-package fr.m2dl.miniprojet;
+package fr.m2dl.miniprojet.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,6 +19,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.m2dl.miniprojet.R;
+import fr.m2dl.miniprojet.utils.SAXXMLParser;
+import fr.m2dl.miniprojet.utils.StaticData;
 import fr.m2dl.miniprojet.domain.FormCategory;
 
 /**

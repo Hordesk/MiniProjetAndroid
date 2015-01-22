@@ -1,6 +1,8 @@
-package fr.m2dl.miniprojet;
+package fr.m2dl.miniprojet.utils;
 
 import android.content.Context;
+
+import fr.m2dl.miniprojet.view.PhotoActivity;
 
 /**
  * Created by mfaure on 15/01/15.

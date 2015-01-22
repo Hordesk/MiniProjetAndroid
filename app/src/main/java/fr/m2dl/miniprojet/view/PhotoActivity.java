@@ -1,4 +1,4 @@
-package fr.m2dl.miniprojet;
+package fr.m2dl.miniprojet.view;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -19,6 +19,13 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import fr.m2dl.miniprojet.utils.DrawableImageView;
+import fr.m2dl.miniprojet.utils.GpsProvider;
+import fr.m2dl.miniprojet.utils.NewAdapter;
+import fr.m2dl.miniprojet.R;
+import fr.m2dl.miniprojet.utils.StaticData;
+import fr.m2dl.miniprojet.utils.ToolStatus;
 
 /**
  * Created by mfaure on 15/01/15.

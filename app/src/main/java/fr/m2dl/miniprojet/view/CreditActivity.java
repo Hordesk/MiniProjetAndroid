@@ -1,10 +1,12 @@
-package fr.m2dl.miniprojet;
+package fr.m2dl.miniprojet.view;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import fr.m2dl.miniprojet.R;
 
 /**
  * Created by mfaure on 22/01/15.

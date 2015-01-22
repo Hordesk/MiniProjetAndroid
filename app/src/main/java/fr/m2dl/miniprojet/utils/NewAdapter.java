@@ -1,4 +1,4 @@
-package fr.m2dl.miniprojet;
+package fr.m2dl.miniprojet.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import fr.m2dl.miniprojet.view.FormActivity;
 
 @SuppressWarnings("unchecked")
 public class NewAdapter extends BaseExpandableListAdapter {
