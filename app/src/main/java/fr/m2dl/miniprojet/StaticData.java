@@ -1,9 +1,6 @@
 package fr.m2dl.miniprojet;
 
-import android.app.Activity;
 import android.content.Context;
-
-import java.util.ArrayList;
 
 /**
  * Created by mfaure on 15/01/15.

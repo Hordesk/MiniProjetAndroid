@@ -1,11 +1,14 @@
 package fr.m2dl.miniprojet;
 
+import android.util.Log;
+
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
+
 import java.io.InputStream;
-        import java.util.List;
-        import javax.xml.parsers.SAXParserFactory;
-        import org.xml.sax.InputSource;
-        import org.xml.sax.XMLReader;
-        import android.util.Log;
+import java.util.List;
+
+import javax.xml.parsers.SAXParserFactory;
 
 import fr.m2dl.miniprojet.domain.FormCategory;
 

@@ -1,7 +1,6 @@
 package fr.m2dl.miniprojet; /**
  * Created by mfaure on 21/01/15.
  */
-import java.util.ArrayList;
 
 import android.content.Context;
 import android.location.Location;

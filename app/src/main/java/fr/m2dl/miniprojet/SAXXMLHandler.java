@@ -2,11 +2,11 @@ package fr.m2dl.miniprojet;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.ArrayList;
 
 import fr.m2dl.miniprojet.domain.FormCategory;
 

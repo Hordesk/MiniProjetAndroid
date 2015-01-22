@@ -41,14 +41,14 @@ public class MainMenu extends Activity {
                 context.startActivity(intent);
             }
         });
-//
-//        buttonCredits.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context,HelloAndroid3.class);
-//                context.startActivity(intent);
-//            }
-//        });
+
+        buttonCredits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,CreditActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
     }
 }
