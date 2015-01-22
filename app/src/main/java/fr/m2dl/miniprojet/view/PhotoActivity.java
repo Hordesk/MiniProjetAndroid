@@ -66,7 +66,7 @@ public class PhotoActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                if (StaticData.tool == ToolStatus.NONE){
+                if (StaticData.tool == ToolStatus.NONE ){
                     Toast.makeText(getApplicationContext(), "Mettez une marque SVP", Toast.LENGTH_SHORT).show();
                 }else{
 
@@ -129,7 +129,13 @@ public class PhotoActivity extends Activity {
                             imageView.drawPoint(x, y);
                             StaticData.xCrossPos = x;
                             StaticData.yCrossPos = y;
+
+                            StaticData.xBottomRightSquare = -10;
+                            StaticData.xTopLeftSquare = -10;
+                            StaticData.yBottomRightSquare = -10;
+                            StaticData.yTopLeftSquare = -10;
                         }
+
 
                         break;
                     case SQUARE:
@@ -145,6 +151,8 @@ public class PhotoActivity extends Activity {
                                     StaticData.xBottomRightSquare, StaticData.yBottomRightSquare
                             );
                         }
+                        StaticData.xCrossPos = -10;
+                        StaticData.yCrossPos = -10;
                         break;
                 }
 

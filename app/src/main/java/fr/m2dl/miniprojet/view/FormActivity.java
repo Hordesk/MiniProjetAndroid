@@ -23,6 +23,7 @@ import fr.m2dl.miniprojet.R;
 import fr.m2dl.miniprojet.utils.SAXXMLParser;
 import fr.m2dl.miniprojet.utils.StaticData;
 import fr.m2dl.miniprojet.domain.FormCategory;
+import fr.m2dl.miniprojet.utils.ToolStatus;
 
 /**
  * Created by mfaure on 15/01/15.
@@ -112,7 +113,7 @@ public class FormActivity extends Activity {
         boutonRetour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                StaticData.tool = ToolStatus.NONE;
                 Intent intent = new Intent(context, PhotoActivity.class);
                 context.startActivity(intent);
             }
